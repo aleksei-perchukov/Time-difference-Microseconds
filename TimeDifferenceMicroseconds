@@ -1,15 +1,15 @@
-const timestamp1 = new String("14:51:00.753000");
-const timestamp2 = new String("15:12:34.142765");
+const timestamp1 = new String("14:51:00.753");
+const timestamp2 = new String("15:12:34.14");
 
-const hour1 = timestamp1.substring(0,2);
-const minutes1 = timestamp1.substring(3,5);
-const seconds1 = timestamp1.substring(6,8);
-const microseconds1 = timestamp1.substring(9,15);
+const hour1 = timestamp1.substring(0, 2);
+const minutes1 = timestamp1.substring(3, 5);
+const seconds1 = timestamp1.substring(6, 8);
+const microseconds1 = timestamp1.substring(9, 15).padEnd(6, "0");
 
-const hour2 = timestamp2.substring(0,2);
-const minutes2 = timestamp2.substring(3,5);
-const seconds2 = timestamp2.substring(6,8);
-const microseconds2 = timestamp2.substring(9,15);
+const hour2 = timestamp2.substring(0, 2);
+const minutes2 = timestamp2.substring(3, 5);
+const seconds2 = timestamp2.substring(6, 8);
+const microseconds2 = timestamp2.substring(9, 15).padEnd(6, "0");
 
 let hoursResult = hour2 - hour1;
 let minutesResult = minutes2 - minutes1;
@@ -17,25 +17,25 @@ let secondsResult = seconds2 - seconds1;
 let microSecondsResult = microseconds2 - microseconds1;
 
 if (microSecondsResult < 0) {
-	microSecondsResult = microSecondsResult + 1000000;
-	secondsResult = secondsResult - 1;
+    microSecondsResult = microSecondsResult + 1000000;
+    secondsResult = secondsResult - 1;
 }
 
 if (secondsResult < 0) {
-	secondsResult = secondsResult + 60;
-	minutesResult = minutesResult - 1;
+    secondsResult = secondsResult + 60;
+    minutesResult = minutesResult - 1;
 }
 
 if (minutesResult < 0) {
-	minutesResult = minutesResult + 60;
-	hoursResult = minutesResult - 1;
+    minutesResult = minutesResult + 60;
+    hoursResult = hoursResult - 1;
 }
 
-let hoursResultFinal = new String(hoursResult.length < 2 ? hoursResult.padStart(2, "0") : hoursResult);
-let minutesResultFinal = new String(minutesResult.length < 2 ? minutesResult.padStart(2, "0") : minutesResult);
-let secondsResultFinal = new String(secondsResult.length < 2 ? secondsResult.padStart(2, "0") : secondsResult);
-let microSecondsResultFinal = new String(microSecondsResult.length < 6 ? microSecondsResult.padStart(6, "0") : microSecondsResult);
+let hoursResultFinal = hoursResult.toString().padStart(2, "0");
+let minutesResultFinal = minutesResult.toString().padStart(2, "0");
+let secondsResultFinal = secondsResult.toString().padStart(2, "0");
+let microSecondsResultFinal = microSecondsResult.toString().padStart(6, "0");
 
 console.log(hour1 + ":" + minutes1 + ':' + seconds1 + '.' + microseconds1);
 console.log(hour2 + ":" + minutes2 + ':' + seconds2 + '.' + microseconds2);
-console.log(minutesResultFinal + ':' + secondsResultFinal + '.' + microSecondsResultFinal);
+console.log(hoursResultFinal + ':' + minutesResultFinal + ':' + secondsResultFinal + '.' + microSecondsResultFinal);
